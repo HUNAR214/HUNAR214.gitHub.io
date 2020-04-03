@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>HTML</title>
+    <style type="text/css">
+        body{
+            background-color: black;
+        }
+    text{
+        font-family:Helvetica, Arial, sans-serif;
+        font-size:11px;
+        pointer-events:none;
+    }
+    #chart{
+        position:absolute;
+        width:500px;
+        height:500px;
+        top:200px;
+        margin-left: 120px;
+    }
+    #question{
+        position: absolute;
+        width:400px;
+        height:500px;
+        top:0;
+        margin-left:640px;
+    }
+    #question h1{
+        font-size: 30px;
+        font-weight: normal;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        position: absolute;
+        padding: 0;
+        margin-top:120px;
+        top:50%;
+        -webkit-transform:translate(0,-50%);
+                transform:translate(0,-50%);
+        color:#42daf5;
+        text-align:left;
+        width: 450px;
+    }
+
+    #input001{
+        float:right;
+        margin-right:420px;
+        margin-top:450px;
+    }
+        
+    button{
+        float:right;
+        margin-top:500px;
+       margin-left: 500px;
+        
+        
+    }
+    button:hover{
+        cursor: pointer;
+    }
+    #answer002{
+        
+        margin-left:550px;
+        margin-top:470px;
+        font-size:50px;
+        color:red;
+    }
+    .container {
+  width: 1170px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+    header {
+  height: 100px;
+  width: 100%;
+  background-color: rgba(34, 49, 52, 0.9);
+  /* Change the position property to fixed, and top property to 0 */
+  position:fixed;
+  top:0px;
+  z-index:10;
+  
+  /* Change the z-index property to 10 */
+  
+}
+
+.logo {
+  width: 100px;
+ ;
+}
+
+.header-left {
+  float: left;
+}
+#ins{
+    margin-top:110px; 
+    color: red;
+}
+#instructions{
+     font-size:20px;
+     color:white;
+}
+.btn{
+    float:right;
+    font-size:20px;
+    padding:20px;
+    background-color:black;
+    color:#42daf5; 
+    font-weight:bold;
+    vertical-align:20px; 
+    margin-top:0px;
+    margin-right:30px;
+}
+.btn:hover{
+    cursor:pointer;
+    opacity: 0.5;
+}
+
+</style>
+    
+</head>
+<body>
+    <header>
+    <div class="container">
+    <div class="header-left">
+    <img class="logo" src="logo.png">
+    </div>
+    </div>
+    </header>
+
+    
+    <form >
+        <input class="btn" type="button" onclick="window.location.href='CSS.html';" value="CSS">
+    </form>
+    <form>
+        <input  class="btn" type="button" onclick="window.location.href='html1.html';" value="HTML">
+    </form>
+    <form>
+        <input class="btn" type="button" onclick="window.location.href='c.html';" value="C/C++">
+
+    </form>
+    <h2 id="ins">INSTRUCTIONS</h2>
+    <ul id="instructions">
+        <li>Spin the wheel for next question.</li>
+        <li>Enter the answer(A/B/C/D) in capital letters.</li>
+    </ul></p>
+
+    <div id="chart"></div>
+    <div id="question"><h1></h1></div>
+    <div id="disappear001">
+    <input type="text" id="input001" /> <button onclick="submit002()">Submit</button>
+    </div>
+    <p id="answer002"></p>
+
+    
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+        var padding = {top:20, right:40, bottom:0, left:0},
+            w = 500 - padding.left - padding.right,
+            h = 500 - padding.top  - padding.bottom,
+            r = Math.min(w, h)/2,
+            rotation = 0,
+            oldrotation = 0,
+            picked = 100000,
+            oldpick = [],
+            color = d3.scale.category20();//category20c()
+            //randomNumbers = getRandomNumbers();
+        //http://osric.com/bingo-card-generator/?title=HTML+and+CSS+BINGO!&words=padding%2Cfont-family%2Ccolor%2Cfont-weight%2Cfont-size%2Cbackground-color%2Cnesting%2Cbottom%2Csans-serif%2Cperiod%2Cpound+sign%2C%EF%B9%A4body%EF%B9%A5%2C%EF%B9%A4ul%EF%B9%A5%2C%EF%B9%A4h1%EF%B9%A5%2Cmargin%2C%3C++%3E%2C{+}%2C%EF%B9%A4p%EF%B9%A5%2C%EF%B9%A4!DOCTYPE+html%EF%B9%A5%2C%EF%B9%A4head%EF%B9%A5%2Ccolon%2C%EF%B9%A4style%EF%B9%A5%2C.html%2CHTML%2CCSS%2CJavaScript%2Cborder&freespace=true&freespaceValue=Web+Design+Master&freespaceRandom=false&width=5&height=5&number=35#results
+         var data = [
+                    {"label":"QUESTION 1 ",  "value":1 , "question": "Which was the first browser to support JavaScript? \n A:Mozilla Firefox \n B:Netscape\n C:Google Chrome \n D:IE"},
+                     {"label":"QUESTION 2", "value":1 , "question": "JavaScript ignores extra spaces \n A: True \n B:False"}, 
+                    {"label":"QUESTION 3",  "value":1 , "question": "Which of the following is the tainted property of a WINDOW  object in Java Script? \n A:Pathnam \n B:Protocol \n C:Defaultstatus \n D:Host"}, 
+                    {"label":"QUESTION 4",  "value":1 , "question": "Which of the following is not a valid JavaScript variable name? \n A:2java \n B:_java_and_ java _names \n C:javaandjava \n D:None of the above"}, 
+                    {"label":"QUESTION 5",  "value":1 , "question": "Which of the ways below is incorrect of instantiating a date? \n A:new Date(dateString) \n B:new Date() \n C. new Date(seconds) \n D:new Date(year, month, day, hours, minutes, seconds, milliseconds)"}, 
+                    {"label":"QUESTION 6",  "value":1 , "question": "___________ JavaScript is also called client-side JavaScript. <br/> A:Microsoft <br/> B:Navigator <br/> C:LiveWire <br/> D:Native"}, 
+                    {"label":"QUESTION 7",  "value":1 , "question": "What java wrapper type is created when a JavaScript object is sent to Java? \n A:ScriptObject \n B:JavaObject \n C:Jobject \n D:JSObject"}, 
+                    {"label":"QUESTION 8",  "value":1 , "question": "Which of the following method is used to evaluate a string of Java Script code in the context of the specified object? \n A:Eval \n B:ParseDoule \n C:ParseObject \n D:Efloat"}, 
+                    {"label":"QUESTION 9",  "value":1 , "question": "Which of the following is not a reserved word in JavaScript? \n A:interface \n B:throws \n C:program \n D:short"}, 
+                    {"label":"QUESTION 10",  "value":1 , "question": "What is the method in JavaScript used to remove the whitespace at the beginning and end of any string ? \n A:strip() \n B:trim() \n C:stripped() \n D:trimmed()"}
+                    
+                   
+        ];
+        var svg = d3.select('#chart')
+            .append("svg")
+            .data([data])
+            .attr("width",  w + padding.left + padding.right)
+            .attr("height", h + padding.top + padding.bottom);
+        var container = svg.append("g")
+            .attr("class", "chartholder")
+            .attr("transform", "translate(" + (w/2 + padding.left) + "," + (h/2 + padding.top) + ")");
+        var vis = container
+            .append("g");
+            
+        var pie = d3.layout.pie().sort(null).value(function(d){return 1;});
+        // declare an arc generator function
+        var arc = d3.svg.arc().outerRadius(r);
+        // select paths, use arc generator to draw
+        var arcs = vis.selectAll("g.slice")
+            .data(pie)
+            .enter()
+            .append("g")
+            .attr("class", "slice");
+            
+        arcs.append("path")
+            .attr("fill", function(d, i){ return color(i); })
+            .attr("d", function (d) { return arc(d); });
+        // add the text
+        arcs.append("text").attr("transform", function(d){
+                d.innerRadius = 0;
+                d.outerRadius = r;
+                d.angle = (d.startAngle + d.endAngle)/2;
+                return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")translate(" + (d.outerRadius -10) +")";
+            })
+            .attr("text-anchor", "end")
+            .text( function(d, i) {
+                return data[i].label;
+            });
+        container.on("click", spin);
+        function spin(d){
+            
+            container.on("click", null);
+            //all slices have been seen, all done
+            console.log("OldPick: " + oldpick.length, "Data length: " + data.length);
+            if(oldpick.length == data.length){
+                console.log("done");
+                container.on("click", null);
+                return;
+            }
+            var  ps       = 360/data.length,
+                 pieslice = Math.round(1440/data.length),
+                 rng      = Math.floor((Math.random() * 1440) + 360);
+                
+            rotation = (Math.round(rng / ps) * ps);
+            
+            picked = Math.round(data.length - (rotation % 360)/ps);
+            picked = picked >= data.length ? (picked % data.length) : picked;
+            if(oldpick.indexOf(picked) !== -1){
+                d3.select(this).call(spin);
+                return;
+            } else {
+                oldpick.push(picked);
+            }
+            rotation += 90 - Math.round(ps/2);
+            vis.transition()
+                .duration(3000)
+                .attrTween("transform", rotTween)
+                .each("end", function(){
+                    //mark question as seen
+                    d3.select(".slice:nth-child(" + (picked + 1) + ") path")
+                        .attr("fill", "#111");
+                    //populate question
+                    d3.select("#question h1")
+                        .text(data[picked].question);
+                    oldrotation = rotation;
+                
+                    container.on("click", spin);
+                     document.getElementById("answer002").innerHTML="";
+                    document.getElementById("disappear001").innerHTML="<input type=text id=input001 /><button onclick=submit002()>Submit</button>";
+                });
+        }
+        //make arrow
+        svg.append("g")
+            .attr("transform", "translate(" + (w + padding.left + padding.right) + "," + ((h/2)+padding.top) + ")")
+            .append("path")
+            .attr("d", "M-" + (r*.15) + ",0L0," + (r*.05) + "L0,-" + (r*.05) + "Z")
+            .style({"fill":"black"});
+        //draw spin circle
+        container.append("circle")
+            .attr("cx", 0)
+            .attr("cy", 0)
+            .attr("r", 60)
+            .style({"fill":"white","cursor":"pointer"});
+        //spin text
+        container.append("text")
+            .attr("x", 0)
+            .attr("y", 15)
+            .attr("text-anchor", "middle")
+            .text("SPIN")
+            .style({"font-weight":"bold", "font-size":"30px"});
+        
+        
+        function rotTween(to) {
+          var i = d3.interpolate(oldrotation % 360, rotation);
+          return function(t) {
+            return "rotate(" + i(t) + ")";
+          };
+        }
+        
+        
+        function getRandomNumbers(){
+            var array = new Uint16Array(1000);
+            var scale = d3.scale.linear().range([360, 1440]).domain([0, 100000]);
+            if(window.hasOwnProperty("crypto") && typeof window.crypto.getRandomValues === "function"){
+                window.crypto.getRandomValues(array);
+                console.log("works");
+            } else {
+                //no support for crypto, get crappy random numbers
+                for(var i=0; i < 1000; i++){
+                    array[i] = Math.floor(Math.random() * 100000) + 1;
+                }
+            }
+            return array;
+        }
+        var questions001=["Which was the first browser to support JavaScript? \n A:Mozilla Firefox \n B:Netscape \n C:Google Chrome \n D:IE","JavaScript ignores extra spaces \n A: True \n B:False","Which of the following is the tainted property of a WINDOW  object in Java Script? \n A:Pathnam \n B:Protocol \n C:Defaultstatus \n D:Host","Which of the following is not a valid JavaScript variable name? \n A:2java \n B:_java_and_ java _names \n C:javaandjava \n D:None of the above","Which of the ways below is incorrect of instantiating a date? \n A:new Date(dateString) \n B:new Date() \n C. new Date(seconds) \n D:new Date(year, month, day, hours, minutes, seconds, milliseconds)","___________ JavaScript is also called client-side JavaScript. \n A:Microsoft \n B:Navigator \n C:LiveWire \n D:Native","What java wrapper type is created when a JavaScript object is sent to Java? \n A:ScriptObject \n B:JavaObject \n C:Jobject \n D:JSObject","Which of the following method is used to evaluate a string of Java Script code in the context of the specified object? \n A:Eval \n B:ParseDoule \n C:ParseObject \n D:Efloat","Which of the following is not a reserved word in JavaScript? \n A:interface \n B:throws \n C:program \n D:short","What is the method in JavaScript used to remove the whitespace at the beginning and end of any string ? \n A:strip() \n B:trim() \n C:stripped() \n D:trimmed()"];
+
+        var answers001=["B","B","C","A","C","B","D","A","C","B"];
+
+
+
+
+        
+        
+        function submit002(){
+             var data = [
+                    {"label":"QUESTION 1 ",  "value":1 , "question": "Which was the first browser to support JavaScript? \n A:Mozilla Firefox \n B:Netscape\n C:Google Chrome \n D:IE"},
+                     {"label":"QUESTION 2", "value":1 , "question": "JavaScript ignores extra spaces \n A: True \n B:False"}, 
+                    {"label":"QUESTION 3",  "value":1 , "question": "Which of the following is the tainted property of a WINDOW  object in Java Script? \n A:Pathnam \n B:Protocol \n C:Defaultstatus \n D:Host"}, 
+                    {"label":"QUESTION 4",  "value":1 , "question": "Which of the following is not a valid JavaScript variable name? \n A:2java \n B:_java_and_ java _names \n C:javaandjava \n D:None of the above"}, 
+                    {"label":"QUESTION 5",  "value":1 , "question": "Which of the ways below is incorrect of instantiating a date? \n A:new Date(dateString) \n B:new Date() \n C. new Date(seconds) \n D:new Date(year, month, day, hours, minutes, seconds, milliseconds)"}, 
+                    {"label":"QUESTION 6",  "value":1 , "question": "___________ JavaScript is also called client-side JavaScript. <br/> A:Microsoft <br/> B:Navigator <br/> C:LiveWire <br/> D:Native"}, 
+                    {"label":"QUESTION 7",  "value":1 , "question": "What java wrapper type is created when a JavaScript object is sent to Java? \n A:ScriptObject \n B:JavaObject \n C:Jobject \n D:JSObject"}, 
+                    {"label":"QUESTION 8",  "value":1 , "question": "Which of the following method is used to evaluate a string of Java Script code in the context of the specified object? \n A:Eval \n B:ParseDoule \n C:ParseObject \n D:Efloat"}, 
+                    {"label":"QUESTION 9",  "value":1 , "question": "Which of the following is not a reserved word in JavaScript? \n A:interface \n B:throws \n C:program \n D:short"}, 
+                    {"label":"QUESTION 10",  "value":1 , "question": "What is the method in JavaScript used to remove the whitespace at the beginning and end of any string ? \n A:strip() \n B:trim() \n C:stripped() \n D:trimmed()"}
+                    
+                   
+        ];
+        var questions001=["Which was the first browser to support JavaScript? \n A:Mozilla Firefox \n B:Netscape \n C:Google Chrome \n D:IE","JavaScript ignores extra spaces \n A: True \n B:False","Which of the following is the tainted property of a WINDOW  object in Java Script? \n A:Pathnam \n B:Protocol \n C:Defaultstatus \n D:Host","Which of the following is not a valid JavaScript variable name? \n A:2java \n B:_java_and_ java _names \n C:javaandjava \n D:None of the above","Which of the ways below is incorrect of instantiating a date? \n A:new Date(dateString) \n B:new Date() \n C. new Date(seconds) \n D:new Date(year, month, day, hours, minutes, seconds, milliseconds)","___________ JavaScript is also called client-side JavaScript. \n A:Microsoft \n B:Navigator \n C:LiveWire \n D:Native","What java wrapper type is created when a JavaScript object is sent to Java? \n A:ScriptObject \n B:JavaObject \n C:Jobject \n D:JSObject","Which of the following method is used to evaluate a string of Java Script code in the context of the specified object? \n A:Eval \n B:ParseDoule \n C:ParseObject \n D:Efloat","Which of the following is not a reserved word in JavaScript? \n A:interface \n B:throws \n C:program \n D:short","What is the method in JavaScript used to remove the whitespace at the beginning and end of any string ? \n A:strip() \n B:trim() \n C:stripped() \n D:trimmed()"];
+
+        var answers001=["B","B","C","A","C","B","D","A","C","B"];
+            var b=document.getElementById("input001").value;
+                
+
+
+            if (data[0]==questions001[0] && b==answers001[0]){
+                
+                document.getElementById("answer002").innerHTML = "Correct..";
+                document.getElementById("disappear001").innerHTML="";
+                
+            } 
+            else if (data[1]==questions001[1] && b == answers001[1]){
+                document.getElementById("answer002").innerHTML="Correct..";
+                document.getElementById("disappear001").innerHTML="";
+            }
+                
+            else if (data[2]==questions001[2] && b == answers001[2]){
+                document.getElementById("answer002").innerHTML="Correct..";
+                document.getElementById("disappear001").innerHTML="";
+                
+            }
+            else if (data[3]==questions001[3] && b == answers001[3]){
+                document.getElementById("answer002").innerHTML="Correct..";
+                document.getElementById("disappear001").innerHTML="";
+                
+            }
+            else if (data[4]==questions001[4] && b == answers001[4]){
+                document.getElementById("answer002").innerHTML="Correct..";
+                document.getElementById("disappear001").innerHTML="";
+                
+            }
+            else if (data[5]==questions001[5] && b == answers001[5]){
+                document.getElementById("answer002").innerHTML="Correct..";
+                document.getElementById("disappear001").innerHTML="";
+                
+            }
+            else if (data[6]==questions001[6] && b == answers001[6]){
+                document.getElementById("answer002").innerHTML="Correct..";
+                document.getElementById("disappear001").innerHTML="";
+                
+            }
+            else if (data[7]==questions001[7] && b == answers001[7]){
+                document.getElementById("answer002").innerHTML="Correct..";
+                document.getElementById("disappear001").innerHTML="";
+                
+            }
+            else if (data[8]==questions001[8] && b == answers001[8]){
+                document.getElementById("answer002").innerHTML="Correct..";
+                document.getElementById("disappear001").innerHTML="";
+                
+            }
+            else if (data[9]==questions001[9] && b == answers001[9]){
+                document.getElementById("answer002").innerHTML="Correct..";
+                document.getElementById("disappear001").innerHTML="";
+                
+            }
+            
+           else {
+                document.getElementById("answer002").innerHTML = "Incorrect..";
+                document.getElementById("disappear001").innerHTML="";
+                
+            }
+        }
+            
+
+
+            
+        
+        
+    
+    </script>
+
+</body>
+</html>
